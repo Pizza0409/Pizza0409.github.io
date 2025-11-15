@@ -1,230 +1,304 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
-  <head><script src="assets/js/color-modes.js"></script>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home"><h2 data-zh="羅筠笙" data-en="YUN-SHENG, LO">羅筠笙</h2></a>
+            </div>
+            <div class="nav-right">
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link" data-zh="首頁" data-en="Home">首頁</a></li>
+                    <li><a href="#about" class="nav-link" data-zh="關於我" data-en="About">關於我</a></li>
+                    <li><a href="#education" class="nav-link" data-zh="學經歷" data-en="Education">學經歷</a></li>
+                    <li><a href="#skills" class="nav-link" data-zh="技能" data-en="Skills">技能</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <button id="langToggle" class="lang-btn">EN</button>
+                </div>
+                
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Blog Template · Bootstrap v5.3</title>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="greeting" data-zh="你好，我是" data-en="Hello, I'm">你好，我是</span>
+                        <span class="name" data-zh="羅筠笙" data-en="YUN-SHENG, LO">羅筠笙</span>
+                    </h1>
+                    <p class="hero-subtitle" data-zh="碩士生 & 滑雪教練" data-en="Master Student & Snowboard Instructor">碩士生 & 滑雪教練</p>
+                    <p class="hero-description" data-zh="目前就讀於國立臺灣大學工程科學及海洋工程學系暨研究所，碩士論文題目是關於影像辨識相關，本身對於機器學習、程式設計有濃厚的興趣，平時也會自我精進相關技能。除了學術上，我也熱愛各種運動，包含排球、跑步、遊泳、滑雪等，目前在冬季規劃要到日本受訓準備滑雪教練證照。" data-en="I am currently studying in the Department and Graduate Institute of Engineering Science and Ocean Engineering at National Taiwan University. My master’s thesis focuses on image recognition. I have a strong interest in machine learning and programming, and I actively work on improving my skills in these areas. Beyond academics, I am also passionate about various sports, including volleyball, running, swimming, and skiing. This winter, I plan to go to Japan for training in preparation for obtaining a ski instructor certification.">
+                        目前就讀於國立臺灣大學工程科學及海洋工程學系暨研究所，碩士論文題目是關於影像辨識相關，
+                        本身對於機器學習、程式設計有濃厚的興趣，平時也會自我精進相關技能。
+                        除了學術上，我也熱愛各種運動，包含排球、跑步、遊泳、滑雪等，目前在冬季規劃要到日本受訓準備滑雪教練證照。
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary" data-zh="了解更多" data-en="Learn More">了解更多</a>
+                        <a href="#skills" class="btn btn-secondary" data-zh="查看技能" data-en="View Skills">查看技能</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-card">
+                        <div class="profile-image">
+                            <img src="profile_img.jpeg" alt="羅筠笙" class="profile-photo">
+                        </div>
+                        <div class="profile-info">
+                            <h3 data-zh="羅筠笙" data-en="YUN-SHENG, LO">羅筠笙</h3>
+                            <p data-zh="碩士生" data-en="Master Student">碩士生</p>
+                            <div class="social-links">
+                                <a href="tel:+886-XXX-XXX-XXX" class="social-link" title="Phone: +886-XXX-XXX-XXX"><i class="fas fa-phone"></i></a>
+                                <a href="mailto:r13525009@ntu.edu.tw" class="social-link" title="Email: r13525009@ntu.edu.tw"><i class="fas fa-envelope"></i></a>
+                                <a href="https://github.com/Pizza0409" class="social-link" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="https://www.linkedin.com/in/yun-sheng-lo-7508771b5/" class="social-link" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/blog/">
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title" data-zh="關於我" data-en="About Me">關於我</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            我是一名對程式設計充滿熱忱的學生，目前就讀於國立臺灣大學。
+                            我對程式設計有著深厚的興趣，特別是關於機器學習、影像辨識以及網頁設計。
+                        </p>
+                        <p>
+                            除了學術以外，我對於運動也很有興趣，目前規劃冬季要到日本進行受訓，
+                            並考取滑雪教練的證照，目前主要是往單板滑雪方向精進，滑雪這項運動培養了我
+                            的溝通技巧和領導能力。我相信這樣的經驗讓我成為
+                            一個更全面的專業人士。
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight">
+                                <i class="fas fa-code"></i>
+                                <h4>程式設計</h4>
+                                <p>熱愛解決複雜問題，享受程式設計的創造過程</p>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-skiing"></i>
+                                <h4>滑雪教練</h4>
+                                <p>冬季擔任滑雪教練，培養溝通與教學能力</p>
+                            </div>
+                            <div class="highlight">
+                                <i class="fas fa-graduation-cap"></i>
+                                <h4>持續學習</h4>
+                                <p>保持對新技術的熱忱，不斷提升專業技能</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+        <!-- Education Section -->
+        <section id="education" class="education">
+            <div class="container">
+                <h2 class="section-title" data-zh="學經歷" data-en="Education & Experience">學經歷</h2>
+                <div class="timeline">
+                    <!-- 2025-至今: 滑雪教練 (最新，最上面) -->
+                    <div class="timeline-item timeline-item-current">
+                        <div class="timeline-marker timeline-marker-current"></div>
+                        <div class="timeline-content timeline-content-right">
+                            <h3>滑雪教練</h3>
+                            <p class="timeline-period" data-zh="2025 - 至今" data-en="2025 - Now">2025 - 至今</p>
+                            <p class="timeline-description">
+                                冬季期間擔任滑雪教練，教授初學者滑雪技巧。
+                                培養了良好的溝通能力、耐心和領導技巧，
+                                這些技能也應用在團隊合作和專案管理中。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 2024-至今: 臺大碩士 (與滑雪教練重疊) -->
+                    <div class="timeline-item timeline-item-overlap">
+                        <div class="timeline-marker timeline-marker-overlap"></div>
+                        <div class="timeline-content timeline-content-left">
+                            <h3>國立臺灣大學</h3>
+                            <h4>工程科學及海洋工程學系暨研究所</h4>
+                            <p class="timeline-period" data-zh="2024 - 至今" data-en="2024 - Now">2024 - 至今</p>
+                            <p class="timeline-description">
+                                就讀國立臺灣大學工程科學及海洋工程學系暨研究所，目前碩士二年級，專精於程式設計、資料結構、
+                                演算法、系統設計等核心課程。積極參與專案開發，
+                                累積實務經驗。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 2020-2024: 成大 (已結束，不重疊) -->
+                    <div class="timeline-item timeline-item-completed">
+                        <div class="timeline-marker timeline-marker-completed"></div>
+                        <div class="timeline-content timeline-content-right">
+                            <h3>國立成功大學</h3>
+                            <h4>水利及海洋工程學系學系輔工程科學系</h4>
+                            <p class="timeline-period" data-zh="2020 - 2024" data-en="2020 - 2024">2020 - 2024</p>
+                            <p class="timeline-description">
+                                在大學期間內除了本系上的課程外，因為對於程式設計有著濃厚的興趣所以選擇工程科學系作為輔系。
+                                在輔系期間內修習了許多程式設計相關的課程，包含程式設計、資料結構、作業系統等資工領域相關課程，
+                                在現階段奠定了不錯的程式基礎。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title" data-zh="技能專長" data-en="Skills & Expertise">技能專長</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 data-zh="程式語言" data-en="Programming Languages">程式語言</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span>Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>HTML/CSS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="65"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 data-zh="技術框架與工具" data-en="Technical Frameworks & Tools">技術框架與工具</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span>TensorFlow</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Git</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Object Detection</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>SketchUp</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>AutoCAD</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 data-zh="軟技能" data-en="Soft Skills">軟技能</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <span data-zh="團隊合作" data-en="Teamwork">團隊合作</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="95"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span data-zh="溝通能力" data-en="Communication">溝通能力</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span data-zh="問題解決" data-en="Problem Solving">問題解決</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span data-zh="教學指導" data-en="Teaching & Mentoring">教學指導</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    </main>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+    <footer class="footer">
+        <div class="container">
+            <p data-zh="© 2025 羅筠笙. 保留所有權利." data-en="© 2025 Yun-Sheng Lo. All rights reserved.">&copy; 2025 羅筠笙. 保留所有權利.</p>
+        </div>
+    </footer>
 
-      .b-example-divider {
-        width: 100%;
-        height: 3rem;
-        background-color: rgba(0, 0, 0, .1);
-        border: solid rgba(0, 0, 0, .15);
-        border-width: 1px 0;
-        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-      }
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="回到頂部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
-      .b-example-vr {
-        flex-shrink: 0;
-        width: 1.5rem;
-        height: 100vh;
-      }
-
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
-      }
-
-      .nav-scroller {
-        position: relative;
-        z-index: 2;
-        height: 2.75rem;
-        overflow-y: hidden;
-      }
-
-      .nav-scroller .nav {
-        display: flex;
-        flex-wrap: nowrap;
-        padding-bottom: 1rem;
-        margin-top: -1px;
-        overflow-x: auto;
-        text-align: center;
-        white-space: nowrap;
-        -webkit-overflow-scrolling: touch;
-      }
-
-      .btn-bd-primary {
-        --bd-violet-bg: #712cf9;
-        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-        --bs-btn-font-weight: 600;
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--bd-violet-bg);
-        --bs-btn-border-color: var(--bd-violet-bg);
-        --bs-btn-hover-color: var(--bs-white);
-        --bs-btn-hover-bg: #6528e0;
-        --bs-btn-hover-border-color: #6528e0;
-        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-        --bs-btn-active-color: var(--bs-btn-hover-color);
-        --bs-btn-active-bg: #5a23c8;
-        --bs-btn-active-border-color: #5a23c8;
-      }
-
-      .bd-mode-toggle {
-        z-index: 1500;
-      }
-
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
-
-      .container {
-        max-width: 900px;  /* 設定最大寬度為 900px */
-      }
-      
-      header {
-        display: flex;
-        align-items: center;
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
-  </head>
-  <body>
-    <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-      <symbol id="check2" viewBox="0 0 16 16">
-        <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
-      </symbol>
-      <symbol id="circle-half" viewBox="0 0 16 16">
-        <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-      </symbol>
-      <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
-        <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
-      </symbol>
-      <symbol id="sun-fill" viewBox="0 0 16 16">
-        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-      </symbol>
-    </svg>
-
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
+    <!-- Page Navigation Menu -->
+    <div id="pageNav" class="page-navigation">
+        <div class="page-nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="page-nav-menu">
+            <a href="#home" class="page-nav-item" data-zh="首頁" data-en="Home">
+                <i class="fas fa-home"></i>
+                <span>首頁</span>
+            </a>
+            <a href="#about" class="page-nav-item" data-zh="關於我" data-en="About">
+                <i class="fas fa-user"></i>
+                <span>關於我</span>
+            </a>
+            <a href="#education" class="page-nav-item" data-zh="學經歷" data-en="Education">
+                <i class="fas fa-graduation-cap"></i>
+                <span>學經歷</span>
+            </a>
+            <a href="#skills" class="page-nav-item" data-zh="技能專長" data-en="Skills">
+                <i class="fas fa-code"></i>
+                <span>技能專長</span>
+            </a>
+        </div>
     </div>
 
-    
-<svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-  <symbol id="aperture" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="10"/>
-    <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/>
-  </symbol>
-  <symbol id="cart" viewBox="0 0 16 16">
-    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-  </symbol>
-  <symbol id="chevron-right" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-  </symbol>
-</svg>
-
-<div class="container bg-body text-body">
-  <header class="d-flex flex-wrap py-3 mb-4 border-bottom bg-body justify-content-start">
-    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-      <svg class="bi me-2" width="0" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="blog-header-logo text-body text-decoration-none fw-bold ms-0">YUN-SHENG, LO</span>
-    </a>
-    <ul class="nav nav-pills">
-      <li class="nav-item"><a href="index.html" class="nav-link fw-bold" style="color:dimgray;">Home</a></li>
-      <li class="nav-item"><a href="cv.html" class="nav-link fw-bold" style="color:dimgray;">CV</a></li>
-    </ul>    
-  </header>
-</div>
-
-
-
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <div class="px-0">
-      <h1 class="display-8 fst-italic">About Myself</h1>
-      <p class="lead my-3">I am currently a graduate student in the Department of Engineering Science and Ocean Engineering at National Taiwan University. 
-        My undergraduate studies were in the Department of Hydraulic and Ocean Engineering at National Cheng Kung University, where I also minored in Engineering Science. 
-        In graduate school, I plan to study Computer Vision.
-      </p>
-    </div>
-  </div>
-
-  <div class="d-flex gap-2 justify-content-center py-5">
-    <a href="https://www.linkedin.com/in/yun-sheng-lo-7508771b5/" role="button" class="btn btn-outline-secondary">
-      <i class="fa-brands fa-linkedin"></i> Linkedln
-    </a>
-    <a href="https://github.com/Pizza0409" role="button" class="btn btn-outline-secondary">
-      <i class="fa-brands fa-github"></i> GitHub
-    </a>
-    <a href="mailto:ee27187219@gmail.com" role="button" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-envelope"></i> Email
-    </a>
-    <a href="tel:+886908402550" role="button" class="btn btn-outline-secondary">
-      <i class="fa-solid fa-phone"></i> Phone
-    </a>
-  </div>
-
-
-</main>
-
-<footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-</footer>
-<script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-
-    </body>
+    <script src="script-compiled.js"></script>
+</body>
 </html>
