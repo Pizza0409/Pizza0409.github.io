@@ -430,72 +430,8 @@ var PersonalWebsite = /** @class */ (function () {
                 timelineItems[2].querySelector('.timeline-description').textContent = 'During university, in addition to courses in my major, I chose Engineering Science as a minor due to my strong interest in programming. During the minor program, I studied many programming-related courses, including programming, data structures, operating systems and other computer science courses, establishing a solid programming foundation.';
             }
         }
-        // Update skill categories and items
-        var skillCategories = document.querySelectorAll('.skill-category');
-        var skillCategoryTitles = document.querySelectorAll('.skill-category h3');
-        // Update category titles
-        if (skillCategoryTitles.length >= 3) {
-            if (this.currentLang === 'zh') {
-                skillCategoryTitles[0].textContent = '程式語言';
-                skillCategoryTitles[1].textContent = '技術框架與工具';
-                skillCategoryTitles[2].textContent = '軟技能';
-            }
-            else {
-                skillCategoryTitles[0].textContent = 'Programming Languages';
-                skillCategoryTitles[1].textContent = 'Technical Frameworks & Tools';
-                skillCategoryTitles[2].textContent = 'Soft Skills';
-            }
-        }
-        if (skillCategories.length >= 3) {
-            // Programming Languages (first category)
-            var progSkills = skillCategories[0].querySelectorAll('.skill-item span');
-            if (progSkills.length >= 3) {
-                if (this.currentLang === 'zh') {
-                    progSkills[0].textContent = 'Python';
-                    progSkills[1].textContent = 'HTML/CSS';
-                    progSkills[2].textContent = 'JavaScript';
-                }
-                else {
-                    progSkills[0].textContent = 'Python';
-                    progSkills[1].textContent = 'HTML/CSS';
-                    progSkills[2].textContent = 'JavaScript';
-                }
-            }
-            // Technical Frameworks & Tools (second category)
-            var techSkills = skillCategories[1].querySelectorAll('.skill-item span');
-            if (techSkills.length >= 5) {
-                if (this.currentLang === 'zh') {
-                    techSkills[0].textContent = 'TensorFlow';
-                    techSkills[1].textContent = 'Git';
-                    techSkills[2].textContent = 'Object Detection';
-                    techSkills[3].textContent = 'SketchUp';
-                    techSkills[4].textContent = 'AutoCAD';
-                }
-                else {
-                    techSkills[0].textContent = 'TensorFlow';
-                    techSkills[1].textContent = 'Git';
-                    techSkills[2].textContent = 'Object Detection';
-                    techSkills[3].textContent = 'SketchUp';
-                    techSkills[4].textContent = 'AutoCAD';
-                }
-            }
-            // Soft Skills (third category)
-            var softSkills = skillCategories[2].querySelectorAll('.skill-item span');
-            if (softSkills.length >= 4) {
-                if (this.currentLang === 'zh') {
-                    softSkills[0].textContent = '團隊合作';
-                    softSkills[1].textContent = '溝通能力';
-                    softSkills[2].textContent = '問題解決';
-                    softSkills[3].textContent = '教學指導';
-                }
-                else {
-                    softSkills[0].textContent = 'Teamwork';
-                    softSkills[1].textContent = 'Communication';
-                    softSkills[2].textContent = 'Problem Solving';
-                    softSkills[3].textContent = 'Teaching & Mentoring';
-                }
-            }
-        }
+        // Skill categories and items are now handled automatically by updateLanguage()
+        // since all skill items have data-zh and data-en attributes
         // Update page navigation items
         var pageNavItems = document.querySelectorAll('.page-nav-item');
         pageNavItems.forEach(function (item) {

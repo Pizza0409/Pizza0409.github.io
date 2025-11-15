@@ -507,72 +507,8 @@ class PersonalWebsite {
             }
         }
 
-        // Update skill categories and items
-        const skillCategories = document.querySelectorAll('.skill-category');
-        const skillCategoryTitles = document.querySelectorAll('.skill-category h3');
-        
-        // Update category titles
-        if (skillCategoryTitles.length >= 3) {
-            if (this.currentLang === 'zh') {
-                (skillCategoryTitles[0] as HTMLElement).textContent = '程式語言';
-                (skillCategoryTitles[1] as HTMLElement).textContent = '技術框架與工具';
-                (skillCategoryTitles[2] as HTMLElement).textContent = '軟技能';
-            } else {
-                (skillCategoryTitles[0] as HTMLElement).textContent = 'Programming Languages';
-                (skillCategoryTitles[1] as HTMLElement).textContent = 'Technical Frameworks & Tools';
-                (skillCategoryTitles[2] as HTMLElement).textContent = 'Soft Skills';
-            }
-        }
-        
-        if (skillCategories.length >= 3) {
-            // Programming Languages (first category)
-            const progSkills = skillCategories[0].querySelectorAll('.skill-item span');
-            if (progSkills.length >= 3) {
-                if (this.currentLang === 'zh') {
-                    (progSkills[0] as HTMLElement).textContent = 'Python';
-                    (progSkills[1] as HTMLElement).textContent = 'HTML/CSS';
-                    (progSkills[2] as HTMLElement).textContent = 'JavaScript';
-                } else {
-                    (progSkills[0] as HTMLElement).textContent = 'Python';
-                    (progSkills[1] as HTMLElement).textContent = 'HTML/CSS';
-                    (progSkills[2] as HTMLElement).textContent = 'JavaScript';
-                }
-            }
-            
-            // Technical Frameworks & Tools (second category)
-            const techSkills = skillCategories[1].querySelectorAll('.skill-item span');
-            if (techSkills.length >= 5) {
-                if (this.currentLang === 'zh') {
-                    (techSkills[0] as HTMLElement).textContent = 'TensorFlow';
-                    (techSkills[1] as HTMLElement).textContent = 'Git';
-                    (techSkills[2] as HTMLElement).textContent = 'Object Detection';
-                    (techSkills[3] as HTMLElement).textContent = 'SketchUp';
-                    (techSkills[4] as HTMLElement).textContent = 'AutoCAD';
-                } else {
-                    (techSkills[0] as HTMLElement).textContent = 'TensorFlow';
-                    (techSkills[1] as HTMLElement).textContent = 'Git';
-                    (techSkills[2] as HTMLElement).textContent = 'Object Detection';
-                    (techSkills[3] as HTMLElement).textContent = 'SketchUp';
-                    (techSkills[4] as HTMLElement).textContent = 'AutoCAD';
-                }
-            }
-            
-            // Soft Skills (third category)
-            const softSkills = skillCategories[2].querySelectorAll('.skill-item span');
-            if (softSkills.length >= 4) {
-                if (this.currentLang === 'zh') {
-                    (softSkills[0] as HTMLElement).textContent = '團隊合作';
-                    (softSkills[1] as HTMLElement).textContent = '溝通能力';
-                    (softSkills[2] as HTMLElement).textContent = '問題解決';
-                    (softSkills[3] as HTMLElement).textContent = '教學指導';
-                } else {
-                    (softSkills[0] as HTMLElement).textContent = 'Teamwork';
-                    (softSkills[1] as HTMLElement).textContent = 'Communication';
-                    (softSkills[2] as HTMLElement).textContent = 'Problem Solving';
-                    (softSkills[3] as HTMLElement).textContent = 'Teaching & Mentoring';
-                }
-            }
-        }
+        // Skill categories and items are now handled automatically by updateLanguage()
+        // since all skill items have data-zh and data-en attributes
 
         // Update page navigation items
         const pageNavItems = document.querySelectorAll('.page-nav-item');
