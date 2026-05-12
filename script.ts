@@ -48,6 +48,10 @@ class PersonalWebsite {
         this.setupLanguageToggle();
         this.setupBackToTop();
         this.setupPageNavigation();
+        this.setupTimelineReadMore();
+
+        window.addEventListener('resize', () => this.setupTimelineReadMore());
+        window.addEventListener('load', () => this.setupTimelineReadMore());
     }
 
     // Navigation functionality
@@ -401,9 +405,46 @@ class PersonalWebsite {
         });
     }
 
+    private setupTimelineReadMore(): void {
+        const timelineCards = document.querySelectorAll('.timeline-by-date .timeline-card-span');
+        timelineCards.forEach(card => {
+            const cardElement = card as HTMLElement;
+            const content = cardElement.querySelector('.timeline-content') as HTMLElement | null;
+            if (!content) return;
+
+            // Reset state before recalculating overflow.
+            cardElement.classList.remove('timeline-card-expanded');
+            content.classList.remove('timeline-content-truncated');
+            const existingBtn = content.querySelector('.timeline-read-more-btn');
+            if (existingBtn) {
+                existingBtn.remove();
+            }
+
+            const hasOverflow = content.scrollHeight > content.clientHeight + 4;
+            if (!hasOverflow) return;
+
+            content.classList.add('timeline-content-truncated');
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'timeline-read-more-btn';
+            button.textContent = this.currentLang === 'zh' ? '閱讀更多' : 'Read more';
+
+            button.addEventListener('click', () => {
+                const isExpanded = cardElement.classList.toggle('timeline-card-expanded');
+                content.classList.toggle('timeline-content-truncated', !isExpanded);
+                button.textContent = isExpanded
+                    ? (this.currentLang === 'zh' ? '收合' : 'Collapse')
+                    : (this.currentLang === 'zh' ? '閱讀更多' : 'Read more');
+            });
+
+            content.appendChild(button);
+        });
+    }
+
     private toggleLanguage(): void {
         this.currentLang = this.currentLang === 'zh' ? 'en' : 'zh';
         this.updateLanguage();
+        this.setupTimelineReadMore();
         if (this.langToggle) {
             this.langToggle.textContent = this.currentLang === 'zh' ? 'EN' : '中';
         }
@@ -456,10 +497,10 @@ class PersonalWebsite {
         if (aboutTexts.length >= 2) {
             if (this.currentLang === 'zh') {
                 aboutTexts[0].textContent = '我是一名對程式設計充滿熱忱的學生，目前就讀於國立臺灣大學。我對程式設計有著深厚的興趣，特別是關於機器學習、影像辨識以及網頁設計。';
-                aboutTexts[1].textContent = '除了學術以外，我對於運動也很有興趣，目前規劃冬季要到日本進行受訓，並考取滑雪教練的證照，目前主要是往單板滑雪方向精進，滑雪這項運動培養了我的溝通技巧和領導能力。我相信這樣的經驗讓我成為一個更全面的專業人士。';
+                aboutTexts[1].textContent = '除了學術以外，我對於運動也很有興趣，已取得 CASI Level 1 Instructor 滑雪教練證照，目前主要是往單板滑雪方向精進，滑雪這項運動培養了我的溝通技巧和領導能力。我相信這樣的經驗讓我成為一個更全面的專業人士。';
             } else {
                 aboutTexts[0].textContent = 'I am a student passionate about programming, currently studying at National Taiwan University. I have a deep interest in programming, particularly in machine learning, image recognition, and web design.';
-                aboutTexts[1].textContent = 'Beyond academics, I am also very interested in sports. I am currently planning to go to Japan for training this winter and obtain a ski instructor certification, focusing mainly on snowboarding. Skiing has developed my communication skills and leadership abilities. I believe this experience makes me a more well-rounded professional.';
+                aboutTexts[1].textContent = 'Beyond academics, I am also very interested in sports. I have obtained the CASI Level 1 Instructor snowboard instructor certification, focusing mainly on snowboarding. Skiing has developed my communication skills and leadership abilities. I believe this experience makes me a more well-rounded professional.';
             }
         }
 
@@ -467,43 +508,61 @@ class PersonalWebsite {
         const highlights = document.querySelectorAll('.highlight');
         if (highlights.length >= 3) {
             if (this.currentLang === 'zh') {
-                (highlights[0].querySelector('h4') as HTMLElement).textContent = '機器學習';
-                (highlights[0].querySelector('p') as HTMLElement).textContent = '專精於影像辨識與深度學習，熱愛解決複雜的技術問題';
+                (highlights[0].querySelector('h4') as HTMLElement).textContent = '程式設計';
+                (highlights[0].querySelector('p') as HTMLElement).textContent = '熱愛解決複雜問題，享受程式設計的創造過程';
                 (highlights[1].querySelector('h4') as HTMLElement).textContent = '滑雪教練';
-                (highlights[1].querySelector('p') as HTMLElement).textContent = '規劃前往日本受訓，準備考取滑雪教練證照';
+                (highlights[1].querySelector('p') as HTMLElement).textContent = 'CASI Level 1 認證滑雪教練，培養溝通與教學能力';
                 (highlights[2].querySelector('h4') as HTMLElement).textContent = '持續學習';
                 (highlights[2].querySelector('p') as HTMLElement).textContent = '保持對新技術的熱忱，不斷提升專業技能';
             } else {
-                (highlights[0].querySelector('h4') as HTMLElement).textContent = 'Machine Learning';
-                (highlights[0].querySelector('p') as HTMLElement).textContent = 'Specialized in image recognition and deep learning, passionate about solving complex technical problems';
+                (highlights[0].querySelector('h4') as HTMLElement).textContent = 'Programming';
+                (highlights[0].querySelector('p') as HTMLElement).textContent = 'Passionate about solving complex problems and the creative process of programming';
                 (highlights[1].querySelector('h4') as HTMLElement).textContent = 'Snowboard Instructor';
-                (highlights[1].querySelector('p') as HTMLElement).textContent = 'Planning to go to Japan for training to obtain snowboard instructor certification';
+                (highlights[1].querySelector('p') as HTMLElement).textContent = 'CASI Level 1 certified instructor, developing communication and teaching skills';
                 (highlights[2].querySelector('h4') as HTMLElement).textContent = 'Continuous Learning';
                 (highlights[2].querySelector('p') as HTMLElement).textContent = 'Maintain enthusiasm for new technologies and continuously improve professional skills';
             }
         }
 
-        // Update timeline content
+        // Update timeline content (5 items: 滑雪教練, 臺大, 宇泰, 台大土木, 成大)
         const timelineItems = document.querySelectorAll('.timeline-content');
-        if (timelineItems.length >= 3) {
+        if (timelineItems.length >= 5) {
             if (this.currentLang === 'zh') {
-                (timelineItems[0].querySelector('h3') as HTMLElement).textContent = '滑雪教練';
+                (timelineItems[0].querySelector('h3') as HTMLElement).textContent = '滑雪教練 (CASI Level 1 Instructor)';
                 (timelineItems[0].querySelector('.timeline-description') as HTMLElement).textContent = '冬季期間擔任滑雪教練，教授初學者滑雪技巧。培養了良好的溝通能力、耐心和領導技巧，這些技能也應用在團隊合作和專案管理中。';
+                const certView = timelineItems[0].querySelector('.cert-link-text');
+                if (certView) (certView as HTMLElement).textContent = '查看證照';
+                const certDl = timelineItems[0].querySelector('.cert-link-dl-text');
+                if (certDl) (certDl as HTMLElement).textContent = '下載';
                 (timelineItems[1].querySelector('h3') as HTMLElement).textContent = '國立臺灣大學';
                 (timelineItems[1].querySelector('h4') as HTMLElement).textContent = '工程科學及海洋工程學系暨研究所';
                 (timelineItems[1].querySelector('.timeline-description') as HTMLElement).textContent = '就讀國立臺灣大學工程科學及海洋工程學系暨研究所，目前碩士二年級，專精於程式設計、資料結構、演算法、系統設計等核心課程。積極參與專案開發，累積實務經驗。';
-                (timelineItems[2].querySelector('h3') as HTMLElement).textContent = '國立成功大學';
-                (timelineItems[2].querySelector('h4') as HTMLElement).textContent = '水利及海洋工程學系學系輔工程科學系';
-                (timelineItems[2].querySelector('.timeline-description') as HTMLElement).textContent = '在大學期間內除了本系上的課程外，因為對於程式設計有著濃厚的興趣所以選擇工程科學系作為輔系。在輔系期間內修習了許多程式設計相關的課程，包含程式設計、資料結構、作業系統等資工領域相關課程，在現階段奠定了不錯的程式基礎。';
+                (timelineItems[2].querySelector('h3') as HTMLElement).textContent = '宇泰工程顧問公司';
+                (timelineItems[2].querySelector('.timeline-description') as HTMLElement).textContent = '宇泰工程顧問公司暑期實習。';
+                (timelineItems[3].querySelector('h3') as HTMLElement).textContent = '國立臺灣大學土木工程學系';
+                (timelineItems[3].querySelector('h4') as HTMLElement).textContent = '電腦輔助工程組暑期實習';
+                (timelineItems[3].querySelector('.timeline-description') as HTMLElement).textContent = '國立台灣大學土木工程學系電腦輔助工程組暑期實習。';
+                (timelineItems[4].querySelector('h3') as HTMLElement).textContent = '國立成功大學';
+                (timelineItems[4].querySelector('h4') as HTMLElement).textContent = '水利及海洋工程學系輔工程科學系';
+                (timelineItems[4].querySelector('.timeline-description') as HTMLElement).textContent = '在大學期間內除了本系上的課程外，因為對於程式設計有著濃厚的興趣所以選擇工程科學系作為輔系。在輔系期間內修習了許多程式設計相關的課程，包含程式設計、資料結構、作業系統等資工領域相關課程，在現階段奠定了不錯的程式基礎。';
             } else {
-                (timelineItems[0].querySelector('h3') as HTMLElement).textContent = 'Snowboard Instructor';
+                (timelineItems[0].querySelector('h3') as HTMLElement).textContent = 'Snowboard Instructor (CASI Level 1)';
                 (timelineItems[0].querySelector('.timeline-description') as HTMLElement).textContent = 'Work as a snowboard instructor during winter, teaching skiing techniques to beginners. Developed excellent communication skills, patience and leadership skills, which are also applied in teamwork and project management.';
+                const certView = timelineItems[0].querySelector('.cert-link-text');
+                if (certView) (certView as HTMLElement).textContent = 'View certificate';
+                const certDl = timelineItems[0].querySelector('.cert-link-dl-text');
+                if (certDl) (certDl as HTMLElement).textContent = 'Download';
                 (timelineItems[1].querySelector('h3') as HTMLElement).textContent = 'National Taiwan University';
                 (timelineItems[1].querySelector('h4') as HTMLElement).textContent = 'Department and Graduate Institute of Engineering Science and Ocean Engineering';
                 (timelineItems[1].querySelector('.timeline-description') as HTMLElement).textContent = 'Studying in the Department and Graduate Institute of Engineering Science and Ocean Engineering at National Taiwan University, currently in second year of master\'s program, specializing in programming, data structures, algorithms, system design and other core courses. Actively participating in project development and accumulating practical experience.';
-                (timelineItems[2].querySelector('h3') as HTMLElement).textContent = 'National Cheng Kung University';
-                (timelineItems[2].querySelector('h4') as HTMLElement).textContent = 'Department of Hydraulic and Ocean Engineering, Minor in Engineering Science';
-                (timelineItems[2].querySelector('.timeline-description') as HTMLElement).textContent = 'During university, in addition to courses in my major, I chose Engineering Science as a minor due to my strong interest in programming. During the minor program, I studied many programming-related courses, including programming, data structures, operating systems and other computer science courses, establishing a solid programming foundation.';
+                (timelineItems[2].querySelector('h3') as HTMLElement).textContent = 'Union-Tech Engineering Consultants Co.';
+                (timelineItems[2].querySelector('.timeline-description') as HTMLElement).textContent = 'Summer internship at Union-Tech Engineering Consultants Co.';
+                (timelineItems[3].querySelector('h3') as HTMLElement).textContent = 'National Taiwan University, Department of Civil Engineering';
+                (timelineItems[3].querySelector('h4') as HTMLElement).textContent = 'Computer Aided Engineering internship';
+                (timelineItems[3].querySelector('.timeline-description') as HTMLElement).textContent = 'Computer Aided Engineering internship of the Department of Civil Engineering at National Taiwan University.';
+                (timelineItems[4].querySelector('h3') as HTMLElement).textContent = 'National Cheng Kung University';
+                (timelineItems[4].querySelector('h4') as HTMLElement).textContent = 'Department of Hydraulic and Ocean Engineering, Minor in Engineering Science';
+                (timelineItems[4].querySelector('.timeline-description') as HTMLElement).textContent = 'During university, in addition to courses in my major, I chose Engineering Science as a minor due to my strong interest in programming. During the minor program, I studied many programming-related courses, including programming, data structures, operating systems and other computer science courses, establishing a solid programming foundation.';
             }
         }
 

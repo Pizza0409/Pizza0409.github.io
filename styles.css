@@ -395,13 +395,338 @@ section {
 }
 
 /* Education Section */
+
+/* 甘特圖式時間軸：水平軸 = 時間，重疊項目分軌上下堆疊 */
+.timeline-gantt {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 0 0.5rem;
+}
+
+.gantt-axis {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0.75rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid #475569;
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.gantt-tracks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.gantt-track {
+    position: relative;
+    height: 2.25rem;
+    min-height: 2.25rem;
+}
+
+.gantt-bar {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    left: calc(var(--start) * 1%);
+    width: calc(var(--width) * 1%);
+    min-width: 2rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #0f172a;
+    box-sizing: border-box;
+    padding: 0 0.35rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gantt-bar-current {
+    background: #10b981;
+    box-shadow: 0 0 0 2px #0f172a;
+}
+
+.gantt-bar-overlap {
+    background: #60a5fa;
+    box-shadow: 0 0 0 2px #0f172a;
+}
+
+.gantt-bar-completed {
+    background: #6b7280;
+    box-shadow: 0 0 0 2px #0f172a;
+}
+
+.gantt-bar-short {
+    min-width: 3.5rem;
+}
+
+.gantt-bar-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.timeline-details-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #94a3b8;
+    margin: 0 auto 1.5rem;
+    max-width: 800px;
+    padding: 0 1rem;
+}
+
+/* 依時間垂直對齊的時間軸：中央軸線 + 年份，卡片依 --top 定位，左右分側 */
+/* 年份位置：至今=0%, 2025=20%, 2024=40%, 2023=60%, 2022=80%, 2020=100% */
+.timeline-by-date {
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: 1100px;
+    position: relative;
+    padding: 0 0.5rem 3rem;
+    overflow: visible;
+}
+
+.timeline-by-date::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #60a5fa, #3b82f6);
+    transform: translateX(-50%);
+    z-index: 0;
+}
+
+.timeline-axis-vertical {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    pointer-events: none;
+}
+
+.timeline-axis-vertical .timeline-year {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #94a3b8;
+    background: #1e293b;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #475569;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 卡片定位：top 對齊開始年份 */
+.timeline-card {
+    position: absolute;
+    width: 45%;
+    min-height: 120px;
+    top: var(--top);
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    z-index: 2;
+    overflow: visible;
+}
+
+/* 有時間跨度的卡片：高度對應年份區間，內容過長時可滾動 */
+.timeline-card-span {
+    height: var(--height);
+    overflow: hidden;
+}
+
+.timeline-by-date .timeline-card-span .timeline-content {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2.75rem;
+    min-width: 0;
+}
+
+/* 截斷時：漸層遮罩 + 閱讀更多按鈕（原有形式）；line-clamp 避免半字截斷 */
+.timeline-by-date .timeline-content-truncated .timeline-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 0 1 auto;
+    min-height: 0;
+}
+
+.timeline-by-date .timeline-content-truncated .timeline-cert {
+    display: none;
+}
+
+.timeline-by-date .timeline-content-truncated::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2.4rem;
+    height: 2.8rem;
+    background: linear-gradient(to bottom, rgba(51, 65, 85, 0), rgba(51, 65, 85, 0.98));
+    pointer-events: none;
+    z-index: 2;
+}
+
+.timeline-read-more-btn {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 0.75rem;
+    border: 1px solid #60a5fa;
+    color: #60a5fa;
+    background: rgba(15, 23, 42, 0.9);
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 3;
+}
+
+.timeline-read-more-btn:hover {
+    background: #60a5fa;
+    color: #0f172a;
+}
+
+.timeline-card-span.timeline-card-expanded {
+    height: auto;
+    overflow: visible;
+    z-index: 4;
+}
+
+.timeline-card-span.timeline-card-expanded .timeline-content {
+    height: auto;
+    overflow: visible;
+    padding-bottom: 2.75rem;
+}
+
+@media (min-width: 769px) {
+    /* 右側連續時段卡片保留小縫隙，維持視覺層次 */
+    .timeline-card-span.timeline-card-gap-bottom:not(.timeline-card-expanded) .timeline-content {
+        height: calc(100% - 12px);
+    }
+}
+
+.timeline-card-left {
+    left: 0;
+    flex-direction: row;
+}
+
+.timeline-card-left .timeline-content {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.timeline-card-right {
+    right: 0;
+    flex-direction: row-reverse;
+}
+
+.timeline-card-right .timeline-content {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+.timeline-by-date .timeline-marker {
+    flex-shrink: 0;
+    position: relative;
+    left: auto;
+    top: 0.5rem;
+    transform: none;
+}
+
+.timeline-card-left .timeline-marker {
+    margin-right: 0.5rem;
+    left: 0;
+}
+
+.timeline-card-right .timeline-marker {
+    margin-left: 0.5rem;
+    left: auto;
+    right: 0;
+}
+
+.timeline-by-date .timeline-content {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    padding: 1rem 1.25rem;
+    padding-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeline-by-date .timeline-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.35rem;
+}
+
+.timeline-by-date .timeline-content h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.35rem;
+    color: #94a3b8;
+}
+
+.timeline-by-date .timeline-period {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.timeline-by-date .timeline-description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    flex: 1;
+    min-height: 2.5em;
+    overflow: hidden;
+}
+
+.timeline-card-span.timeline-card-expanded .timeline-description {
+    overflow: visible;
+    min-height: 0;
+}
+
+.timeline-by-date .timeline-cert {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #475569;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.timeline-by-date .timeline-cert .cert-link {
+    margin-left: 0;
+}
+
 .timeline {
     max-width: 800px;
     margin: 0 auto;
     position: relative;
 }
 
-.timeline::before {
+.timeline:not(.timeline-by-date)::before {
     content: '';
     position: absolute;
     left: 50%;
@@ -418,7 +743,69 @@ section {
     position: relative;
 }
 
-/* Timeline item positioning */
+/* 重疊時段群組：兩張卡片同一側（右側）緊鄰，視覺上為同時進行 */
+.timeline-overlap-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+
+.timeline-overlap-group .timeline-item {
+    margin-bottom: 0.75rem;
+}
+
+.timeline-overlap-group .timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-overlap-group .timeline-item-current {
+    flex-direction: row-reverse;
+}
+
+.timeline-overlap-group .timeline-item-overlap {
+    flex-direction: row-reverse;
+    margin-top: 0;
+}
+
+.timeline-overlap-group .timeline-content {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    width: 45%;
+}
+
+/* 重疊群組靠左（如實習與成大並行） */
+.timeline-overlap-group-left {
+    align-items: flex-start;
+}
+
+.timeline-overlap-group-left .timeline-content {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+.timeline-overlap-group-left .timeline-item-current {
+    flex-direction: row;
+}
+
+.timeline-overlap-group-left .timeline-item-overlap {
+    flex-direction: row;
+}
+
+.timeline-overlap-group-left .timeline-overlap-label {
+    align-self: flex-start;
+}
+
+.timeline-overlap-label {
+    align-self: flex-end;
+    font-size: 0.8rem;
+    color: #60a5fa;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Timeline item positioning (standalone items) */
 .timeline-item-current {
     flex-direction: row-reverse; /* Right side */
     margin-bottom: 1rem;
@@ -518,6 +905,28 @@ section {
 .timeline-description {
     color: #cbd5e1;
     line-height: 1.6;
+}
+
+.timeline-cert {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #475569;
+    color: #cbd5e1;
+    font-size: 0.95rem;
+}
+
+.timeline-cert strong {
+    color: #e2e8f0;
+}
+
+.timeline-cert .cert-link {
+    margin-left: 0.75rem;
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.timeline-cert .cert-link:hover {
+    text-decoration: underline;
 }
 
 /* Skills Section */
@@ -766,6 +1175,81 @@ section {
         left: 20px;
         background: #60a5fa !important; /* Reset color for mobile */
         box-shadow: 0 0 0 4px #334155 !important;
+    }
+
+    .timeline-overlap-group {
+        align-items: stretch;
+    }
+
+    .timeline-overlap-label {
+        align-self: flex-start;
+        margin-left: 0;
+    }
+
+    /* 依時間對齊時間軸：小螢幕改為由上而下堆疊 */
+    .timeline-by-date {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .timeline-by-date::before {
+        display: none;
+    }
+
+    .timeline-axis-vertical {
+        position: relative;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+        margin-bottom: 0.5rem;
+        border-bottom: 2px solid #475569;
+    }
+
+    .timeline-by-date .timeline-card {
+        position: relative !important;
+        width: 100%;
+        top: auto !important;
+        height: auto !important;
+        max-height: none;
+        padding-left: 50px;
+    }
+
+    .timeline-by-date .timeline-card-left,
+    .timeline-by-date .timeline-card-right {
+        flex-direction: row;
+    }
+
+    .timeline-by-date .timeline-marker {
+        position: absolute;
+        left: 20px;
+        top: 0.5rem;
+        margin: 0;
+    }
+
+    .timeline-by-date .timeline-content {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .timeline-gantt {
+        margin-bottom: 2rem;
+        padding: 0 0.25rem;
+    }
+
+    .gantt-axis {
+        font-size: 0.75rem;
+    }
+
+    .gantt-bar {
+        font-size: 0.65rem;
+        min-width: 2rem;
+    }
+
+    .gantt-bar-short {
+        min-width: 2.5rem;
     }
 
     .contact-content {
