@@ -964,11 +964,68 @@ section {
     margin-bottom: 0;
 }
 
-.skill-item span {
+.skill-item > span {
     display: block;
     font-weight: 500;
     color: #e2e8f0;
     margin-bottom: 0.5rem;
+}
+
+.skill-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.skill-label > span {
+    font-weight: 500;
+    color: #e2e8f0;
+}
+
+.skill-cert-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    background: rgba(96, 165, 250, 0.15);
+    color: #60a5fa;
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.skill-cert-btn:hover,
+.skill-cert-btn:focus-visible {
+    background: rgba(96, 165, 250, 0.3);
+    color: #93c5fd;
+    outline: none;
+}
+
+.skill-cert-tooltip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.25rem 0.5rem;
+    background: #1e293b;
+    color: #e2e8f0;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    border: 1px solid #475569;
+}
+
+.skill-cert-btn:hover .skill-cert-tooltip,
+.skill-cert-btn:focus-visible .skill-cert-tooltip {
+    opacity: 1;
 }
 
 .skill-bar {
