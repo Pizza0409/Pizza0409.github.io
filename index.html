@@ -115,8 +115,12 @@
         <!-- Education Section：中央時間軸 + 依時間垂直對齊，左右分側呈現重疊 -->
         <section id="education" class="education">
             <div class="container">
-                <h2 class="section-title" data-zh="學經歷" data-en="Education & Experience">學經歷</h2>
-                <div class="timeline timeline-by-date">
+                <h2 class="section-title education-section-title" data-zh="學經歷" data-en="Education & Experience">學經歷</h2>
+                <div class="education-tabs" role="tablist" aria-label="學經歷分類">
+                    <button type="button" class="education-tab active" role="tab" aria-selected="true" aria-controls="education-timeline" data-tab="experience" data-zh="經歷" data-en="Experience">經歷</button>
+                    <button type="button" class="education-tab" role="tab" aria-selected="false" aria-controls="education-timeline" data-tab="education" data-zh="學歷" data-en="Education">學歷</button>
+                </div>
+                <div id="education-timeline" class="timeline timeline-by-date">
                     <!-- 中央軸線與年份標記 -->
                     <div class="timeline-axis-vertical">
                         <span class="timeline-year" data-zh="至今" data-en="Now">至今</span>
@@ -126,7 +130,7 @@
                         <span class="timeline-year">2022</span>
                         <span class="timeline-year">2020</span>
                     </div>
-                    <div class="timeline-card timeline-card-left timeline-card-current timeline-card-span" style="--top: 0%; --height: 12%;">
+                    <div class="timeline-card timeline-card-left timeline-card-current timeline-card-span" data-timeline-tab="experience" style="--top: 0%; --height: 12%;">
                         <div class="timeline-marker timeline-marker-current"></div>
                         <div class="timeline-content">
                             <h3 data-zh="滑雪教練 (CASI Level 1 Instructor)" data-en="Snowboard Instructor (CASI Level 1)">滑雪教練 (CASI Level 1 Instructor)</h3>
@@ -140,7 +144,7 @@
                         </div>
                     </div>
                     <!-- 臺大碩士 2024-至今：視覺區塊從至今(0%)延伸到2024(40%) -->
-                    <div class="timeline-card timeline-card-right timeline-card-overlap timeline-card-span timeline-card-gap-bottom" style="--top: 0%; --height: 40%;">
+                    <div class="timeline-card timeline-card-right timeline-card-overlap timeline-card-span timeline-card-gap-bottom" data-timeline-tab="education" style="--top: 0%; --height: 40%;">
                         <div class="timeline-marker timeline-marker-overlap"></div>
                         <div class="timeline-content">
                             <h3>國立臺灣大學</h3>
@@ -150,7 +154,7 @@
                         </div>
                     </div>
                     <!-- 宇泰 2023 暑期：區塊長度符合暑期比例，高度足夠顯示完整內容 -->
-                    <div class="timeline-card timeline-card-left timeline-card-overlap timeline-card-span" style="--top: 40%; --height: 15%;">
+                    <div class="timeline-card timeline-card-left timeline-card-overlap timeline-card-span" data-timeline-tab="experience" style="--top: 40%; --height: 15%;">
                         <div class="timeline-marker timeline-marker-overlap"></div>
                         <div class="timeline-content">
                             <h3 data-zh="宇泰工程顧問公司" data-en="Union-Tech Engineering Consultants Co.">宇泰工程顧問公司</h3>
@@ -159,7 +163,7 @@
                         </div>
                     </div>
                     <!-- 台大土木 2022 暑期：區塊略高以容納標題+副標+描述，避免截斷 -->
-                    <div class="timeline-card timeline-card-left timeline-card-overlap timeline-card-span" style="--top: 60%; --height: 18%;">
+                    <div class="timeline-card timeline-card-left timeline-card-overlap timeline-card-span" data-timeline-tab="experience" style="--top: 60%; --height: 18%;">
                         <div class="timeline-marker timeline-marker-overlap"></div>
                         <div class="timeline-content">
                             <h3 data-zh="國立臺灣大學土木工程學系" data-en="National Taiwan University, Department of Civil Engineering">國立臺灣大學土木工程學系</h3>
@@ -169,7 +173,7 @@
                         </div>
                     </div>
                     <!-- 成大 2020-2024：視覺區塊從2024(40%)延伸到2020(100%)，底部對齊2020 -->
-                    <div class="timeline-card timeline-card-right timeline-card-completed timeline-card-span" style="--top: 40%; --height: 60%;">
+                    <div class="timeline-card timeline-card-right timeline-card-completed timeline-card-span" data-timeline-tab="education" style="--top: 40%; --height: 60%;">
                         <div class="timeline-marker timeline-marker-completed"></div>
                         <div class="timeline-content">
                             <h3>國立成功大學</h3>

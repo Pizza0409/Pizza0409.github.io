@@ -14,6 +14,7 @@ body {
     line-height: 1.6;
     color: #e2e8f0;
     background-color: #0f172a;
+    overflow-x: clip;
 }
 
 .container {
@@ -395,6 +396,38 @@ section {
 }
 
 /* Education Section */
+
+.education-tabs {
+    display: none;
+}
+
+.education-tab {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.education-tab:hover {
+    color: #e2e8f0;
+}
+
+.education-tab.active {
+    background: #334155;
+    color: #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-card--tab-hidden {
+    display: none !important;
+}
 
 /* 甘特圖式時間軸：水平軸 = 時間，重疊項目分軌上下堆疊 */
 .timeline-gantt {
@@ -936,7 +969,7 @@ section {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
     gap: 3rem;
 }
 
@@ -1150,8 +1183,18 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* display:contents 讓選單脫離隱藏容器，漢堡選單才能正常運作 */
     .nav-right {
+        display: contents;
+    }
+
+    .nav-right > .language-switcher {
         display: none;
+    }
+
+    .nav-logo h2 {
+        min-width: 0;
+        font-size: 1.25rem;
     }
 
     .hamburger {
@@ -1243,26 +1286,37 @@ section {
         margin-left: 0;
     }
 
-    /* 依時間對齊時間軸：小螢幕改為由上而下堆疊 */
+    /* 手機版：大標題改為 Tab 切換 */
+    .education .education-section-title {
+        display: none;
+    }
+
+    .education-tabs {
+        display: flex;
+        gap: 0.5rem;
+        max-width: 360px;
+        margin: 0 auto 1.5rem;
+        padding: 0.35rem;
+        background: #1e293b;
+        border-radius: 12px;
+        border: 1px solid #475569;
+    }
+
+    /* 依時間對齊時間軸：小螢幕改為 Tab 內容堆疊 */
     .timeline-by-date {
         min-height: 0;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .timeline-by-date::before {
         display: none;
     }
 
+    /* 堆疊式時間軸不需橫向年份列，避免撐破版面 */
     .timeline-axis-vertical {
-        position: relative;
-        transform: none;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.5rem 0;
-        margin-bottom: 0.5rem;
-        border-bottom: 2px solid #475569;
+        display: none;
     }
 
     .timeline-by-date .timeline-card {
@@ -1271,7 +1325,24 @@ section {
         top: auto !important;
         height: auto !important;
         max-height: none;
-        padding-left: 50px;
+        padding-left: 44px;
+        left: auto !important;
+        right: auto !important;
+    }
+
+    .timeline-by-date .timeline-card-span {
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .timeline-by-date .timeline-card-span .timeline-content {
+        height: auto !important;
+        overflow: visible !important;
+        padding-bottom: 1.25rem;
+    }
+
+    .timeline-by-date .timeline-content-truncated::after {
+        display: none;
     }
 
     .timeline-by-date .timeline-card-left,
@@ -1321,6 +1392,19 @@ section {
     .about-highlights {
         grid-template-columns: 1fr;
     }
+
+    .skill-cert-tooltip {
+        bottom: auto;
+        top: calc(100% + 6px);
+    }
+
+    .container {
+        padding: 0 16px;
+    }
+
+    .hero-container {
+        padding: 0 16px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1335,6 +1419,14 @@ section {
     .btn {
         padding: 10px 20px;
         font-size: 0.9rem;
+    }
+
+    .timeline-by-date .timeline-card {
+        padding-left: 36px;
+    }
+
+    .timeline-by-date .timeline-marker {
+        left: 12px;
     }
 }
 

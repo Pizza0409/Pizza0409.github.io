@@ -21,8 +21,15 @@ class PersonalWebsite {
         this.setupBackToTop();
         this.setupPageNavigation();
         this.setupTimelineReadMore();
-        window.addEventListener('resize', () => this.setupTimelineReadMore());
-        window.addEventListener('load', () => this.setupTimelineReadMore());
+        this.setupEducationTabs();
+        window.addEventListener('resize', () => {
+            this.setupTimelineReadMore();
+            this.applyEducationTab();
+        });
+        window.addEventListener('load', () => {
+            this.setupTimelineReadMore();
+            this.applyEducationTab();
+        });
     }
     // Navigation functionality
     setupNavigation() {
@@ -334,8 +341,40 @@ class PersonalWebsite {
             });
         });
     }
+    setupEducationTabs() {
+        this.educationTabs = document.querySelectorAll('.education-tab');
+        this.educationTimelineCards = document.querySelectorAll('.timeline-by-date .timeline-card[data-timeline-tab]');
+        this.activeEducationTab = 'experience';
+        this.educationTabMq = window.matchMedia('(max-width: 768px)');
+        this.educationTabs.forEach((tab) => {
+            tab.addEventListener('click', () => {
+                this.activeEducationTab = tab.dataset.tab || 'experience';
+                this.applyEducationTab();
+            });
+        });
+        this.educationTabMq.addEventListener('change', () => this.applyEducationTab());
+        this.applyEducationTab();
+    }
+    applyEducationTab() {
+        if (!this.educationTimelineCards?.length)
+            return;
+        const isMobile = this.educationTabMq.matches;
+        const activeTab = this.activeEducationTab || 'experience';
+        this.educationTabs?.forEach((tab) => {
+            const isActive = tab.dataset.tab === activeTab;
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+        this.educationTimelineCards.forEach((card) => {
+            const cardTab = card.dataset.timelineTab;
+            const show = !isMobile || cardTab === activeTab;
+            card.classList.toggle('timeline-card--tab-hidden', !show);
+            card.hidden = !show;
+        });
+    }
     setupTimelineReadMore() {
         const timelineCards = document.querySelectorAll('.timeline-by-date .timeline-card-span');
+        const isMobileTimeline = window.matchMedia('(max-width: 768px)').matches;
         timelineCards.forEach(card => {
             const cardElement = card;
             const content = cardElement.querySelector('.timeline-content');
@@ -348,6 +387,8 @@ class PersonalWebsite {
             if (existingBtn) {
                 existingBtn.remove();
             }
+            if (isMobileTimeline)
+                return;
             const hasOverflow = content.scrollHeight > content.clientHeight + 4;
             if (!hasOverflow)
                 return;
@@ -370,6 +411,7 @@ class PersonalWebsite {
         this.currentLang = this.currentLang === 'zh' ? 'en' : 'zh';
         this.updateLanguage();
         this.setupTimelineReadMore();
+        this.applyEducationTab();
         if (this.langToggle) {
             this.langToggle.textContent = this.currentLang === 'zh' ? 'EN' : '中';
         }

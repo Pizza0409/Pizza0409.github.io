@@ -26,6 +26,10 @@ class PersonalWebsite {
     private langToggle: HTMLElement | null;
     private currentLang: 'zh' | 'en';
     private observer!: IntersectionObserver;
+    private educationTabs: NodeListOf<HTMLButtonElement> | null = null;
+    private educationTimelineCards: NodeListOf<HTMLElement> | null = null;
+    private activeEducationTab: 'experience' | 'education' = 'experience';
+    private educationTabMq!: MediaQueryList;
 
     constructor() {
         this.navMenu = document.querySelector('.nav-menu');
@@ -49,9 +53,16 @@ class PersonalWebsite {
         this.setupBackToTop();
         this.setupPageNavigation();
         this.setupTimelineReadMore();
+        this.setupEducationTabs();
 
-        window.addEventListener('resize', () => this.setupTimelineReadMore());
-        window.addEventListener('load', () => this.setupTimelineReadMore());
+        window.addEventListener('resize', () => {
+            this.setupTimelineReadMore();
+            this.applyEducationTab();
+        });
+        window.addEventListener('load', () => {
+            this.setupTimelineReadMore();
+            this.applyEducationTab();
+        });
     }
 
     // Navigation functionality
@@ -405,8 +416,47 @@ class PersonalWebsite {
         });
     }
 
+    private setupEducationTabs(): void {
+        this.educationTabs = document.querySelectorAll('.education-tab');
+        this.educationTimelineCards = document.querySelectorAll('.timeline-by-date .timeline-card[data-timeline-tab]');
+        this.activeEducationTab = 'experience';
+        this.educationTabMq = window.matchMedia('(max-width: 768px)');
+
+        this.educationTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                this.activeEducationTab = tabName === 'education' ? 'education' : 'experience';
+                this.applyEducationTab();
+            });
+        });
+
+        this.educationTabMq.addEventListener('change', () => this.applyEducationTab());
+        this.applyEducationTab();
+    }
+
+    private applyEducationTab(): void {
+        if (!this.educationTimelineCards?.length) return;
+
+        const isMobile = this.educationTabMq.matches;
+        const activeTab = this.activeEducationTab;
+
+        this.educationTabs?.forEach(tab => {
+            const isActive = tab.dataset.tab === activeTab;
+            tab.classList.toggle('active', isActive);
+            tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        });
+
+        this.educationTimelineCards.forEach(card => {
+            const cardTab = card.dataset.timelineTab;
+            const show = !isMobile || cardTab === activeTab;
+            card.classList.toggle('timeline-card--tab-hidden', !show);
+            card.hidden = !show;
+        });
+    }
+
     private setupTimelineReadMore(): void {
         const timelineCards = document.querySelectorAll('.timeline-by-date .timeline-card-span');
+        const isMobileTimeline = window.matchMedia('(max-width: 768px)').matches;
         timelineCards.forEach(card => {
             const cardElement = card as HTMLElement;
             const content = cardElement.querySelector('.timeline-content') as HTMLElement | null;
@@ -419,6 +469,8 @@ class PersonalWebsite {
             if (existingBtn) {
                 existingBtn.remove();
             }
+
+            if (isMobileTimeline) return;
 
             const hasOverflow = content.scrollHeight > content.clientHeight + 4;
             if (!hasOverflow) return;
@@ -445,6 +497,7 @@ class PersonalWebsite {
         this.currentLang = this.currentLang === 'zh' ? 'en' : 'zh';
         this.updateLanguage();
         this.setupTimelineReadMore();
+        this.applyEducationTab();
         if (this.langToggle) {
             this.langToggle.textContent = this.currentLang === 'zh' ? 'EN' : '中';
         }
